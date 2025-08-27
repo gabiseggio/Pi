@@ -82,7 +82,8 @@
       text-decoration: none;
       color: #007bff;
       margin: 0 5px;
-      transition: color 0.3s;
+      /*Acelerei um pouco para evitar a sensação de 'delay' */
+      transition: color 0.2s; 
     }
 
     .links a:hover {

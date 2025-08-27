@@ -91,6 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       margin: 8px 0;
       border-radius: 8px;
       border: 1px solid #ccc;
+      /* Adicionei o box-sizing para os inputs não "grudarem" no fim do container */
+      box-sizing: border-box;
+      
     }
     button {
       background: linear-gradient(to right, #007bff, #ff69b4);
@@ -141,8 +144,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
       <label>Foto:</label>
       <input type="file" name="foto">
-
-      <textarea name="observacoes" placeholder="Descrição do animal e sua situação"></textarea>
+      
+      <!--Tirei o resize da textarea e adicionei um script para que ela expanda verticalmente conforme o tamanho da descrição que o usuário digitar. -->
+      <textarea id="desc" style="resize: none;" name="observacoes" placeholder="Descrição do animal e sua situação"></textarea>
 
       <label>Status:</label>
       <select name="status" required>
@@ -154,5 +158,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <button type="submit">Postar Animal</button>
     </form>
   </div>
+
+  <script>
+    const textarea = document.getElementById('desc');
+
+        textarea.addEventListener('input', () => {
+            // Define a altura do textarea para 'auto' para recalcular a altura do conteúdo
+            textarea.style.height = 'auto';
+            // Define a nova altura com base no scrollHeight do conteúdo
+            textarea.style.height = textarea.scrollHeight + 'px';
+        });
+  </script>
 </body>
 </html>
